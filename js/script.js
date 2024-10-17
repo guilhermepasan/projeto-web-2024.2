@@ -15,11 +15,10 @@ document.getElementById('data').addEventListener('change', function() {
     if (dataSelecionada) {
         loading.style.display = 'block';
 
-        // Inutil pq o navegador converte sozinho
         // Converte a data para d/m/y
-        //const partesData = dataSelecionada.split('-'); // ['YYYY', 'MM', 'DD']
-        //const dataFormatada = `${partesData[2]}/${partesData[1]}/${partesData[0]}`;
-        //dataFormatadaP.textContent = `Data Selecionada: ${dataFormatada}`; // Exibe a data formatada
+        const partesData = dataSelecionada.split('-'); // ['YYYY', 'MM', 'DD']
+        const dataFormatada = `${partesData[2]}/${partesData[1]}/${partesData[0]}`;
+        dataFormatadaP.textContent = `Data Selecionada: ${dataFormatada}`; // Exibe a data formatada
 
         // Faz uma requisição AJAX para obter os horários disponíveis
         const xhr = new XMLHttpRequest();
