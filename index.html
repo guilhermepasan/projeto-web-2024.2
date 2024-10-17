@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Corte</title>
+    <!-- Link para o CSS externo -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <h1>Agendamento de Corte</h1>
+    <form id="agendamentoForm" action="finalizar_agendamento.php" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" required>
+
+        <label for="tipo_corte">Tipo de Corte:</label>
+        <input type="text" id="tipo_corte" name="tipo_corte" required>
+
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" required>
+
+        <div class="loading" id="loading">Carregando horários disponíveis...</div>
+
+        <div id="horarios_disponiveis">
+            <label for="horario">Escolha um Horário:</label>
+            <select id="horario" name="horario" required>
+                <option value="">Selecione um horário</option>
+            </select>
+        </div>
+
+        <button type="submit">Confirmar Agendamento</button>
+    </form>
+
+    <p id="data_formatada"></p> <!-- Elemento para exibir a data formatada -->
+
+    <!-- Link para o JavaScript externo -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
