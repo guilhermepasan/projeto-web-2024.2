@@ -2,6 +2,15 @@
 // Inclui as funções comuns
 include 'funcoes.php';
 
+// Mapeamento de tipos de corte para seus valores
+$tipos_corte_valores = [
+    'Barba' => 20,
+    'Maquina' => 25,
+    'Tesoura' => 30,
+    'Disfarcado' => 20,
+    'Sobrancelha' => 15
+];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recebe e sanitiza os dados do formulário
     $nome = isset($_POST['nome']) ? sanitize($_POST['nome']) : '';
@@ -28,6 +37,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
+    // Verifica se o tipo de corte é válido
+    if (!array_key_exists($tipo_corte, $tipos_corte_valores)) {
+        echo "<h1>Erro</h1><p>Tipo de corte inválido.</p>";
+        exit;
+    }
+
+    // Obtém o valor do corte
+    $valor_corte = $tipos_corte_valores[$tipo_corte];
+
     // Lê os agendamentos existentes
     $agendamentos = ler_agendamentos($arquivo_json);
 
@@ -50,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<h1>Agendamento Confirmado</h1>";
     echo "<p><strong>Nome:</strong> $nome</p>";
     echo "<p><strong>Telefone:</strong> $telefone</p>";
-    echo "<p><strong>Tipo de Corte:</strong> $tipo_corte</p>";
+    echo "<p><strong>Tipo de Corte:</strong> $tipo_corte - R$$valor_corte</p>";
     echo "<p><strong>Data:</strong> " . date("d/m/Y", strtotime($data)) . "</p>";
     echo "<p><strong>Horário:</strong> $horario</p>";
 } else {
